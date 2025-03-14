@@ -1,4 +1,3 @@
-import Logo from "./_components/Logo";
 import Navigation from "./_components/Navigation";
 import "./_styles/globals.css";
 
@@ -20,12 +19,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`bg-primary-950 text-primary-100 min-h-screen ${josefin.className} antialiased min-h-screen`}
+        className={`bg-primary-950 text-primary-100 ${josefin.className} antialiased flex flex-col `}
       >
-        <header className="border-b-1 border-primary-100/10">
+        <header className="border-b-1 border-primary-100/10 ">
           <Navigation />
         </header>
-        <div className="p-4">
+        <div className="md:p-4 p-2">
           <main className="mx-auto">
             {children} {/*Like Outlet in React Router*/}
           </main>

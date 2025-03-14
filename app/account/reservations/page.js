@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ReservationCard from "../../_components/ReservationCard";
 
 export const metadata={
@@ -10,20 +11,20 @@ export default function Page() {
   const bookings = [];
 
   return (
-    <div>
-      <h2 className="font-semibold text-2xl text-accent-400 mb-7">
+    <div className="flex flex-col gap-2 md:gap-4">
+      <h2 className="font-semibold lg:text-2xl sm:text-xl text-lg text-accent-400">
         Your reservations
       </h2>
 
       {bookings.length === 0 ? (
-        <p className="text-lg">
+        <p className="sm:text-lg text-sm">
           You have no reservations yet. Check out our{" "}
-          <a className="underline text-accent-500" href="/cabins">
+          <Link className="underline text-accent-500" href="/cabins">
             luxury cabins &rarr;
-          </a>
+          </Link>
         </p>
       ) : (
-        <ul className="space-y-6">
+        <ul className="xl:space-y-6 md:space-y-4 space-y-3">
           {bookings.map((booking) => (
             <ReservationCard booking={booking} key={booking.id} />
           ))}

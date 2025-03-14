@@ -23,5 +23,7 @@
     --color-accent-800:#6C4D28;
     --color-accent-900:#4B351B;
     --color-accent-950:#382814;
+    --breakpoint-xs:425px;
+    --breakpoint-sm:600px;
 }
 
