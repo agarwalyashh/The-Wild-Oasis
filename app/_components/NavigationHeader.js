@@ -2,7 +2,7 @@ import Link from "next/link";
 import Logo from "./Logo";
 function NavigationHeader() {
   return (
-    <div className="justify-between mx-auto xl:max-w-7xl md:max-w-5xl py-3 px-2 items-center relative z-10 flex">
+    <div className="justify-between mx-auto py-2 md:py-3 px-9 items-center relative z-10 flex">
       <Logo />
       <ul className="flex lg:gap-8 md:gap-6 gap-4 text-xs xs:text-sm lg:text-lg">
         <li className="cursor-pointer">

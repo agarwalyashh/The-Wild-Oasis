@@ -23,7 +23,7 @@ export default function Page() {
               with nature and enjoying simple pleasures with family.
             </p>
             <p>
-              Our 8 luxury cabins provide a cozy base, but the real freedom and
+              Our luxury cabins provide a cozy base, but the real freedom and
               peace you&apos;ll find in the surrounding mountains. Wander
               through lush forests, breathe in the fresh air, and watch the
               stars twinkle above from the warmth of a campfire or your hot tub.
