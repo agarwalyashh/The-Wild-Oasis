@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "react-day-picker/style.css";
 @theme {
     --color-primary-50:#E1E8EF;
     --color-primary-100:#D4DEE7;
@@ -24,7 +25,16 @@
     --color-accent-900:#4B351B;
     --color-accent-950:#382814;
     --breakpoint-xs:425px;
-    --breakpoint-sm:600px;
+    --breakpoint-sm:650px;
+    --breakpoint-md:800px;
+}
+.rdp-root {
+  --rdp-range_start-date-background-color:#D2AF84;
+  --rdp-range_end-date-background-color:#D2AF84;
+  --rdp-range_middle-color:#E1E8EF;
+  --rdp-range_start-color:#E1E8EF;
+  --rdp-range_end-color:#E1E8EF;
+  --rdp-range_middle-background-color: #D2AF84;
 }
 .bars-5 {
     width: 45px;

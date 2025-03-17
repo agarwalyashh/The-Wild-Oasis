@@ -1,33 +1,54 @@
+import Reservation from "@/app/_components/Reservation";
+import Spinner from "@/app/_components/Spinner";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
 import { EyeSlashIcon, MapPinIcon, UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { Suspense } from "react";
 
 // export const metadata={
 //     title:"Cabin"
 // }
 
-export async function generateMetadata({params})
-{
-    const {name}=await getCabin(params.cabinId);
-    return{
-        title:`Cabin ${name}`
-    }
+export async function generateMetadata({ params }) {
+  const {cabinId} = await params
+  const { name } = await getCabin(cabinId);
+  return {
+    title: `Cabin ${name}`,
+  };
 }
 
-export async function generateStaticParams(){ // to explicitely tell nextjs which routes should be generated at build time (static rendering)
-  const cabins=await getCabins()
-  const ids=cabins.map((cabin)=>({cabinId:cabin.id.toString()}))
-  return ids; 
+export async function generateStaticParams() {
+  // to explicitely tell nextjs which routes should be generated at build time (static rendering)
+  const cabins = await getCabins();
+  const ids = cabins.map((cabin) => ({ cabinId: cabin.id.toString() }));
+  return ids;
 }
 
-export default async function Page({params}) {
-  const { id, name, maxCapacity, regularPrice, discount, image, description } = await getCabin(params.cabinId);
+export default async function Page({ params }) {
+  const {cabinId} = await params
+  const cabin = await getCabin(cabinId);
+  const { id, name, maxCapacity, regularPrice, discount, image, description } = cabin
 
+  // const settings = await getSettings();
+  // const bookedDates = await getBookedDatesByCabinId(cabinId) // this way it will take a lot of time as next call happens only after previous one is resolved
+  // const [cabins,settings,bookedDates] = await Promise.all([
+  //   getCabin(cabinId),
+  //   getSettings(),
+  //   getBookedDatesByCabinId(cabinId)
+  // ])
+  // const { id, name, maxCapacity, regularPrice, discount, image, description } = cabins
+
+  // But still this way, we are blocking the cabinData code which can be fetched earlier separately. Therefore we use another Reservation Component
   return (
-    <div className="mx-auto w-[90%] my-10 md:my-20">
+    <div className="mx-auto w-[90%] my-4 md:my-8 space-y-6 md:space-y-8">
       <div className="md:grid md:grid-cols-[3fr_4fr] flex flex-col md:gap-15 gap-4 lg:gap-20 border border-primary-800">
         <div className="relative h-[300px] md:h-auto">
-          <Image fill src={image} alt={`Cabin ${name}`} className="object-cover"/>
+          <Image
+            fill
+            src={image}
+            alt={`Cabin ${name}`}
+            className="object-cover"
+          />
         </div>
 
         <div className="p-6">
@@ -61,12 +82,14 @@ export default async function Page({params}) {
           </ul>
         </div>
       </div>
-
       <div>
-        <h2 className="text-3xl md:text-4xl mt-10 lg:text-5xl font-semibold text-center">
+        <h2 className="text-3xl md:text-4xl mt-10 lg:text-5xl font-semibold text-center text-accent-400">
           Reserve today. Pay on arrival.
         </h2>
       </div>
+      <Suspense fallback={<Spinner/>}>
+        <Reservation cabinId={cabinId} cabin={cabin}/>
+      </Suspense>
     </div>
   );
 }
