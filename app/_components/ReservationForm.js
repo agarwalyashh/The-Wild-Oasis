@@ -1,21 +1,10 @@
 "use client"
-function ReservationForm({cabin}) {
+function ReservationForm({cabin,name}) {
     const {maxCapacity} = cabin;
     return (
       <div className='flex flex-col w-full'>
         <div className='bg-primary-800 text-primary-300 flex items-center p-2 md:p-4'>
-          <p>Logged in as</p>
-  
-          {/* <div className='flex gap-4 items-center'>
-            <img
-              // Important to display google profile images
-              referrerPolicy='no-referrer'
-              className='h-8 rounded-full'
-              src={user.image}
-              alt={user.name}
-            />
-            <p>{user.name}</p>
-          </div> */}
+          <p>Logged in as {name}</p>
         </div>
   
         <form className='bg-primary-900 text-sm sm:text-lg flex-1 flex flex-col p-2 md:p-4 gap-4'>

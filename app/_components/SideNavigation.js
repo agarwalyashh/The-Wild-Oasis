@@ -12,17 +12,17 @@ import { usePathname } from 'next/navigation';
     {
       name: 'Home',
       href: '/account',
-      icon: <HomeIcon className='lg:h-5 lg:w-5 sm:h-3 sm:w-3 h-2 w-2 text-primary-600' />,
+      icon: <HomeIcon className='md:h-5 md:w-5 h-3 w-3 text-primary-600' />,
     },
     {
       name: 'Reservations',
       href: '/account/reservations',
-      icon: <CalendarDaysIcon className='lg:h-5 lg:w-5 sm:h-3 sm:w-3 h-2 w-2 text-primary-600' />,
+      icon: <CalendarDaysIcon className='md:h-5 md:w-5 h-3 w-3 text-primary-600' />,
     },
     {
       name: 'Guest profile',
       href: '/account/profile',
-      icon: <UserIcon className='lg:h-5 lg:w-5 sm:h-3 sm:w-3 h-2 w-2 text-primary-600' />,
+      icon: <UserIcon className='md:h-5 md:w-5 h-3 w-3 text-primary-600' />,
     },
   ];
   
@@ -34,11 +34,11 @@ import { usePathname } from 'next/navigation';
           {navLinks.map((link) => (
             <li key={link.name}>
               <Link
-                className={`py-3 xl:px-5 lg:px-3 hover:bg-primary-900 hover:text-primary-100 transition-colors flex items-center gap-1 xs:gap-2 md:gap-4 xl:font-semibold text-primary-200 ${pathName===link.href && 'bg-primary-900'}`}
+                className={`py-2 px-1 xl:px-5 lg:px-3 hover:bg-primary-900 hover:text-primary-100 transition-colors flex items-center gap-1 xs:gap-2 md:gap-4 xl:font-semibold text-primary-200 ${pathName===link.href && 'bg-primary-900'}`}
                 href={link.href}
               >
                 <span>{link.icon}</span>
-                <span className='mt-1'>{link.name}</span>
+                <span className="mt-1">{link.name}</span>
               </Link>
             </li>
           ))}
