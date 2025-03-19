@@ -1,15 +1,15 @@
 import Link from "next/link";
 import ReservationCard from "../../_components/ReservationCard";
+import { getBookings } from "@/app/_lib/data-service";
+import { auth } from "@/app/_lib/auth";
 
-export const metadata={
-  title:"Reservations"
-}
+export const metadata = {
+  title: "Reservations",
+};
 
-
-export default function Page() {
-  // CHANGE
-  const bookings = [];
-
+export default async function Page() {
+  const session = await auth();
+  const bookings = await getBookings(session.user.guestId);
   return (
     <div className="flex flex-col gap-2 md:gap-4">
       <h2 className="font-semibold lg:text-2xl sm:text-xl text-lg text-accent-400">

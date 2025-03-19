@@ -25,8 +25,7 @@
     --color-accent-900:#4B351B;
     --color-accent-950:#382814;
     --breakpoint-xs:425px;
-    --breakpoint-sm:650px;
-    --breakpoint-md:800px;
+    --breakpoint-sm:600px;
 }
 .rdp-root {
   --rdp-range_start-date-background-color:#D2AF84;

@@ -5,7 +5,7 @@ import { auth } from "../_lib/auth";
 async function NavigationHeader() {
   const session = await auth(); // Note that since authentication uses cookies, it makes this component dynamic and since NavigationHeader is present in app layout, entire app is dynamic
   return (
-    <div className="justify-between mx-auto py-2 md:py-3 px-9 items-center relative z-10 flex">
+    <div className="justify-between mx-auto py-2 md:py-3 px-8 items-center relative z-10 flex">
       <Logo />
       <ul className="flex items-center lg:gap-8 md:gap-6 gap-4 text-xs xs:text-sm lg:text-lg">
         <li className="cursor-pointer hover:text-accent-400">

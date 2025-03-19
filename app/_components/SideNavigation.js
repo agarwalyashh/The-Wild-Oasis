@@ -20,7 +20,7 @@ import { usePathname } from 'next/navigation';
       icon: <CalendarDaysIcon className='md:h-5 md:w-5 h-3 w-3 text-primary-600' />,
     },
     {
-      name: 'Guest profile',
+      name: 'Profile',
       href: '/account/profile',
       icon: <UserIcon className='md:h-5 md:w-5 h-3 w-3 text-primary-600' />,
     },

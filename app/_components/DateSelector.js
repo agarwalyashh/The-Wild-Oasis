@@ -1,5 +1,5 @@
 "use client";
-import { isWithinInterval } from "date-fns";
+import { differenceInDays, isSameDay, isWithinInterval } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
 import { useReservation } from "./ReservationContext";
@@ -19,11 +19,13 @@ function DateSelector({ settings, bookedDates, cabin }) {
   const currentMonth = new Date().getMonth();
   const today = new Date().getDate();
   const {range,setRange,resetRange} = useReservation()
-  // CHANGE
-  const regularPrice = 23;
-  const discount = 23;
-  const numNights = 23;
-  const cabinPrice = 23;
+
+  const displayRange = isAlreadyBooked(range,bookedDates)?{}:range;
+
+  const {regularPrice,discount} = cabin
+
+  const numNights = differenceInDays(displayRange.to, displayRange.from);
+  const cabinPrice = numNights*(regularPrice-discount);
 
   const { minBookingLength, maxBookingLength } = settings;
 
@@ -36,7 +38,7 @@ function DateSelector({ settings, bookedDates, cabin }) {
           mode="range"
           animate
           hideNavigation
-          selected={range}
+          selected={displayRange}
           onSelect={(range) => setRange(range)}
           min={minBookingLength}
           max={maxBookingLength}
@@ -48,6 +50,7 @@ function DateSelector({ settings, bookedDates, cabin }) {
           ]}
           captionLayout="dropdown"
           numberOfMonths={1}
+          disabled={(currDate)=>bookedDates.some((day)=>isSameDay(day,currDate))}
         />
         <DayPicker
           classNames={{ selected: `bg-accent-400 rounded-full` }}
@@ -55,7 +58,7 @@ function DateSelector({ settings, bookedDates, cabin }) {
           mode="range"
           animate
           hideNavigation
-          selected={range}
+          selected={displayRange}
           onSelect={(range) => setRange(range)}
           min={minBookingLength}
           max={maxBookingLength}
@@ -67,10 +70,11 @@ function DateSelector({ settings, bookedDates, cabin }) {
           endMonth={new Date(currentYear + 5, 11)}
           captionLayout="dropdown"
           numberOfMonths={1}
+          disabled={(currDate)=>bookedDates.some((day)=>isSameDay(day,currDate))}
         />
       </div>
 
-      <div className="flex items-center justify-between px-2 md:px-4 bg-accent-500 text-primary-800">
+      <div className="flex items-center justify-between px-2 md:px-4 bg-accent-500 text-primary-800 min-h-[50px]">
         <div className="flex items-center gap-2 w-full">
           <p className="flex gap-1 items-center whitespace-nowrap">
             {discount > 0 ? (
